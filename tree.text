@@ -1,0 +1,82 @@
+.
+├── F:worktree.txt
+├── org-pjpjcute-stockforecast-api
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── org
+│       │   │       └── pjpjcute
+│       │   │           └── stockforecast
+│       │   │               └── api
+│       │   └── resources
+│       │       ├── META-INF
+│       │       │   └── maven
+│       │       │       └── archetype.xml
+│       │       └── archetype-resources
+│       │           ├── pom.xml
+│       │           └── src
+│       │               ├── main
+│       │               │   └── java
+│       │               │       └── App.java
+│       │               └── test
+│       │                   └── java
+│       │                       └── AppTest.java
+│       └── test
+│           ├── java
+│           └── resources
+├── org-pjpjcute-stockforecast-api.iml
+├── org-pjpjcute-stockforecast-core
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── org
+│       │   │       └── pjpjcute
+│       │   │           └── stockforecast
+│       │   │               └── core
+│       │   │                   ├── ServiceApplication.java
+│       │   │                   ├── application
+│       │   │                   ├── controller
+│       │   │                   ├── domain
+│       │   │                   └── infrastructure
+│       │   └── resources
+│       └── test
+│           ├── java
+│           └── resources
+├── org-pjpjcute-stockforecast-core.iml
+├── org-pjpjcute-stockforecast-support
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── org
+│       │   │       └── pjpjcute
+│       │   │           └── stockforecast
+│       │   │               └── support
+│       │   │                   └── utils
+│       │   │                       ├── DateTimeUtils.java
+│       │   │                       ├── ExceptionUtil.java
+│       │   │                       └── JsonUtils.java
+│       │   └── resources
+│       │       ├── META-INF
+│       │       │   └── maven
+│       │       │       └── archetype.xml
+│       │       └── archetype-resources
+│       │           ├── pom.xml
+│       │           └── src
+│       │               ├── main
+│       │               │   └── java
+│       │               │       └── App.java
+│       │               └── test
+│       │                   └── java
+│       │                       └── AppTest.java
+│       └── test
+│           ├── java
+│           └── resources
+├── org-pjpjcute-stockforecast-support.iml
+├── pom.xml
+├── readme.md
+└── tree.text
+
+58 directories, 22 files

@@ -1,0 +1,343 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 
+    readme：
+    MA spring boot 2.0.X maven mutiplemodule template project
+    https://confluence.maezia.com/x/NpmK
+    spring boot version：2.0.4.RELEASE
+    vwasp-privatecharging-service-app：deployment module
+    -->
+	
+    <groupId>org.pjpjcute.stockforecast</groupId>
+    <artifactId>org-pjpjcute-stockforecast-parent</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    
+    <!-- spring boot start -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+        <relativePath />
+    </parent>
+    <!-- spring boot end -->
+
+    <!-- submodules start -->
+    <modules>
+        <module>org-pjpjcute-stockforecast-support</module>
+        <module>org-pjpjcute-stockforecast-api</module>
+        <module>org-pjpjcute-stockforecast-infrastructure</module>
+    </modules>
+    <!-- submodules end -->
+    
+    <!-- properties start -->
+    <properties>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <revision>1.0.0</revision>
+
+        <!--三方工具包-->
+        <jacoco.version>0.8.5</jacoco.version>
+
+        <lombok.version>1.18.30</lombok.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <powermock.version>2.0.0</powermock.version>
+        <guava.version>32.0.1-jre</guava.version>
+        <junit.version>4.13.1</junit.version>
+        <org.apache.commons.versioin>4.4</org.apache.commons.versioin>
+        <jackson.version>2.14.0</jackson.version>
+
+        <spring-cloud-dependencies.version>2021.0.8</spring-cloud-dependencies.version>
+        <cloud.bootstrap.version>3.1.7</cloud.bootstrap.version>
+        <spring.openfeign.version>3.1.8</spring.openfeign.version>
+        <spring.test.version>5.3.17</spring.test.version>
+
+        <io.springfox.version>3.0.0</io.springfox.version>
+        <org.powermock.version>2.0.2</org.powermock.version>
+
+        <postgresql.version>42.3.8</postgresql.version>
+        <spring.kafka.verson>2.8.11</spring.kafka.verson>
+        <elasticsearch.version>7.15.2</elasticsearch.version>
+
+
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+
+        <!--BDD测试框架-->
+        <io.cucumber.version>7.3.4</io.cucumber.version>
+        <sonar.version>3.6.0.1398</sonar.version>
+        <!--二方包-->
+    </properties>
+    <!-- properties end -->
+    
+    <dependencies>
+
+        <!--三方框架包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!-- support web development start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!-- 去除旧log依赖 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- support web development end -->
+
+
+        <!-- spring boot health check start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <exclusions>
+                <!-- 去除旧log依赖 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- spring boot health check end -->
+        
+        <!-- spring cloud config service start -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- spring cloud config service end -->
+        
+        <!-- prometheus start -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>1.12.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.12.4</version>
+        </dependency>
+        <!-- prometheus end -->
+
+
+
+    </dependencies>
+    
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-bom</artifactId>
+                <version>${io.cucumber.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringCloud 微服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bootstrap</artifactId>
+                <version>${cloud.bootstrap.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring.openfeign.version}</version>
+            </dependency>
+            <!-- S测试 end -->
+
+
+            <!-- io.springfox -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${io.springfox.version}</version>
+            </dependency>
+
+            <!-- PostgreSQL JDBC 驱动 -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+
+
+
+            <!-- Elasticsearch, 如果你决定使用 -->
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+
+            <!--三方工具包-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${org.powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito2</artifactId>
+                <version>${org.powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${org.apache.commons.versioin}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!-- Kafka -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring.kafka.verson}</version>
+            </dependency>
+
+            <!-- PostgreSQL JDBC 驱动 -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+
+
+
+            <!-- Elasticsearch, 如果你决定使用 -->
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- download dependency jar begin -->
+    <repositories>
+        <repository>
+            <id>maven-public</id>
+            <url>http://vgc-nexus-sonatype-nexus.vgc:8081/repository/maven-public</url>
+        </repository>
+    </repositories>
+    <!-- download dependency jar end -->
+    <!-- 
+    deploy jar to nexus link:
+    https://confluence.maezia.com/x/9jIFAg 
+    -->
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>jfrog-releases</name>
+            <url>https://jfrog-prod.maezia.com:443/artifactory/ma-maven-develop-virtual</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>jfrog-snapshots</name>
+            <url>https://jfrog-prod.maezia.com:443/artifactory/ma-maven-develop-virtual</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
